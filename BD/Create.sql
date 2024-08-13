@@ -1,0 +1,32 @@
+CREATE DATABASE LibraryDb;
+GO
+
+USE LibraryDb;
+GO
+
+CREATE TABLE Books (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Title NVARCHAR(100) NOT NULL,
+    Author NVARCHAR(100) NOT NULL,
+    Category NVARCHAR(50),
+    ISBN NVARCHAR(20),
+    PublishedDate DATE
+);
+GO
+
+CREATE TABLE Members (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Tel NVARCHAR(15)
+);
+GO
+
+CREATE TABLE Loans (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    BookId INT NOT NULL FOREIGN KEY REFERENCES Books(Id),
+    BorrowerName NVARCHAR(100) NOT NULL,
+    BorrowDate DATE NOT NULL,
+    ReturnDate DATE
+);
+GO
